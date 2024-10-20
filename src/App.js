@@ -62,7 +62,7 @@ function App() {
         .attr("x", x)
         .attr("y", y)
         .attr("width", 5)
-        .attr("height", 10)
+        .attr("height", Math.abs(priceScale(Open) - priceScale(Close)))
         .attr("fill", Open > Close ? "red" : "green");
     }
 
