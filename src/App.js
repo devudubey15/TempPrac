@@ -12,6 +12,8 @@ function App() {
   useEffect(() => {
     const svg = d3.select("#chart").select("svg");
 
+    // TODO: Define candle gap, Set to a value
+
     if (!svg.empty()) {
       // ye isliye lagya hai kyuki, do svg component ban rhe the .
       svg.remove();
@@ -28,7 +30,6 @@ function App() {
       .attr("class", "container");
 
     // TimeScale
-
     const timescale = d3
       .scaleTime()
       .domain([
@@ -37,8 +38,16 @@ function App() {
       ])
       .range([50, svgWidth - 50]);
 
-    // Pricescale
+    // TODO: Calculate the Tick Gap
+    // Tick gap is the gap between the two ticks, for example, the gap between,
+    // candle of time 9:15 and candle of time 9:20,
+    // Or, candle of time 10:25 and candle of time 10:30,
+    // Or, candle of time 11:20 and candle of time 11:25
 
+    // TODO: Calculate candle width using the gap between the two candles, and the tick gap
+    // Tick Gap = Candle Width + Candle Gap
+
+    // Pricescale
     const MinPrice = d3.min(objectArray, ([, values]) => values.Low);
     const MaxPrice = d3.max(objectArray, ([, values]) => values.High);
 
