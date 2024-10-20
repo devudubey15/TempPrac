@@ -80,7 +80,9 @@ function App() {
 
 export default App;
 
-// there are two things happening which are unwanted.
-// 1. When i load the app browser . somtimes two svg elements are being created.
-// and  width and height of the root is 1269 x 1242 and  width and height of the svg is 1302 x 617 .
-// and width and height effected when i open the inspection window.
+// There are two issues occurring that are not desired:
+
+// 1. When I load the app in the browser, sometimes two SVG elements are created.
+// 2. The width and height of the root element are 1269x1242,
+//while the width and height of the SVG are 1302x617.
+//These dimensions are affected when I open the inspection window.
