@@ -1,0 +1,49 @@
+Current Functionalities of this Application:
+------------------------------------------
+1. An SVG container is set up with a width of `innerWidth` and a height of `innerHeight`.
+
+2. The x-axis is incorporated with a `timeScale`, and the y-axis is incorporated with a `priceScale`.
+
+    For `timeScale`, the `scaleTime` function is used, which takes two parameters:
+    - Domain: (minimum value of data, maximum value of data)
+    - Range: (combination of x-axis positions, e.g., "min, max")
+
+    For `priceScale`, the `scaleLinear` function is used, which maps numeric values to positions (not time-based).
+    It also takes two parameters:
+    - Domain: (min, max values of the entire data)
+    - Range: (combination of y-axis positions, e.g., "min, max")
+
+    Each rectangle created within the SVG represents a single candle based on a single data object. Five parameters are set for each rectangle:
+    1. `x` position: calculated from `timeScale`.
+    2. `y` position: calculated from `priceScale` (whichever is greater between open and close, y will be set with that value).
+    3. Width of the rectangle.
+    4. Height of the rectangle: `abs(priceScale(open - close))`.
+    5. Color of the rectangle: red if `open` is greater than `close`; otherwise, green.
+
+    Each rectangle is created in a loop so that each candle is placed accordingly on the SVG component.
+
+---------------------------------
+
+Current task:
+-------------
+
+1. Calculate the candle width .
+2. Calculate the Candle gap.
+3. Calculate the tic Gap.  //  not clear what is the use of it 
+
+----
+Solution Approach:
+------------------
+    1. Candle Gap:
+    --------------
+    Candle GAp is pixels between the two consecutive candles. 
+    this can be calculated with using scaletime function. and this will be static (same gap for all candles). so i have to calculate it once.
+
+    2. Candle Width:
+    ----------------
+    Candle width is relative to the Candle Gap. which because candles doesn't over lap. 
+    currently it is set to 5 . it should be taking up 80-90 % of candle Gap.
+
+    3. Tick Gap:
+    ------------
+     Tick Gap = Candle Width + Candle Gap

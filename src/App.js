@@ -12,8 +12,6 @@ function App() {
   useEffect(() => {
     const svg = d3.select("#chart").select("svg");
 
-    // TODO: Define candle gap, Set to a value
-
     if (!svg.empty()) {
       // ye isliye lagya hai kyuki, do svg component ban rhe the .
       svg.remove();
@@ -56,6 +54,18 @@ function App() {
       .domain([MinPrice, MaxPrice])
       .range([svgHeight - 50, 50]);
 
+    // Cndle Gap
+    const CandleGap = Math.abs(
+      timescale(new Date("2023-12-12 09:15:00")) -
+        timescale(new Date("2023-12-12 09:20:00"))
+    );
+
+    // Candle Width
+    const CandleWidth = CandleGap * 0.7; // Gap percantages
+
+    // Tick Gap
+    const TickGap = CandleGap + CandleWidth;
+
     for (let i = 0; i < objectArray.length; i++) {
       const [time, values] = objectArray[i];
       const { Open, High, Low, Close } = values;
@@ -70,9 +80,17 @@ function App() {
         .append("rect")
         .attr("x", x)
         .attr("y", y)
-        .attr("width", 5)
+        .attr("width", CandleWidth)
         .attr("height", Math.abs(priceScale(Open) - priceScale(Close)))
         .attr("fill", Open > Close ? "red" : "green");
+
+      newSvg
+        .append("line")
+        .attr("x1", x + CandleWidth / 2)
+        .attr("y1", priceScale(High))
+        .attr("x2", x + CandleWidth / 2)
+        .attr("y2", priceScale(Low))
+        .attr("stroke", Open > Close ? "red" : "green");
     }
 
     return () => {
