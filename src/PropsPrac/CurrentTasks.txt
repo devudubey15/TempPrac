@@ -31,6 +31,10 @@ Current task:
 2. Calculate the Candle gap.
 3. Calculate the tic Gap.  //  not clear what is the use of it 
 
+4. When on the canvas mouse cursor should be of type "crosshair"
+5. There should be a dashed line passing through the crosshair vertically and horizontally
+6. When mouse moves the dashed line should also move with the crosshair
+
 ----
 Solution Approach:
 ------------------
